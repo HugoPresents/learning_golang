@@ -8,6 +8,7 @@ import "fmt"
 
 func main() {
     for i := 0; i < 100; i++ {
+        /* 判断有点多，各人觉得还行
         if (i % 3 == 0) && (i % 5 == 0) {
             fmt.Printf("%d FizzBuzz\n", i)
             continue
@@ -20,6 +21,20 @@ func main() {
             fmt.Printf("%d Buzz\n", i)
             continue
         }
-        fmt.Printf("%d\n", i)
+        */
+        // 另一种处理
+        p := false
+        if i % 3 == 0 {
+            fmt.Printf("Fizz")
+            p = true
+        }
+        if i % 5 == 0 {
+            fmt.Printf("Buzz")
+            p = true
+        }
+        if !p {
+            fmt.Printf("%d", i)
+        }
+        fmt.Println()
     }
 }

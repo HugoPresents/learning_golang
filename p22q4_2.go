@@ -7,11 +7,20 @@ asSASA ddd dsjkdsjs dk
 
 package main
 
+/*
 import "fmt"
 import "unicode/utf8"
+*/
+// 请使用这种方法来引入多个包
+import (
+    "fmt"
+    "unicode/utf8"
+)
 
 func main() {
     str := "asSASA ddd dsjkdsjs dk"
+    fmt.Printf("String %s\nLength: %d, Runes: %d\n", str, len([]byte(str)), utf8.RuneCount([]byte(str)))
+    // 不明 length 和 runes 的区别，求破
     fmt.Printf("%d\n", utf8.RuneCountInString(str))
     // 这个方法太扯了~
     str_1 := str[0:4] + "abc" + str[7:]

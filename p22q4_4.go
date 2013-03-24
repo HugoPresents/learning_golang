@@ -13,6 +13,7 @@ func main() {
     //fmt.Printf("%v\n", str_slice)
     for i := len(str_slice) - 1; i >= 0; i -- {
         // 感觉也不是很好~
+        // 实际上只管打印的话还行
         fmt.Printf("%s", string(str_slice[i]))
     }
     fmt.Printf("\n")

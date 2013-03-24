@@ -7,7 +7,12 @@ package main
 import "fmt"
 
 func main() {
+    // 对了，这里要增加一个 slice 的长度判断
     f_slice := []float64{12.5, 13.6, 17.85}
+    if len(f_slice) == 0 {
+        fmt.Printf("0\n")
+        return
+    }
     var sum float64
     for _, f_per := range f_slice {
         sum += f_per

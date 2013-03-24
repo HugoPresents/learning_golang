@@ -38,4 +38,11 @@ G:    for {
         fmt.Printf("\n")
         line ++
     }
+    /* 我觉得这个才是理解错了~我日
+    str := "A"
+    for i := 0; i < 100; i++ {
+        fmt.Printf("%s\n", str)
+        str = str + "A"
+    }
+    /*
 }
