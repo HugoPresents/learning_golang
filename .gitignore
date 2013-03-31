@@ -22,3 +22,6 @@ _testmain.go
 *.exe
 *
 !*.go
+!*.html
+!*.tmpl
+!templates
