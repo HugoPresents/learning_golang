@@ -6,6 +6,7 @@ import (
     "net/http"
     "strings"
     "time"
+    "text/template"
 )
 
 func hello(w http.ResponseWriter, r *http.Request) {
@@ -35,4 +36,9 @@ func my_time(w http.ResponseWriter, r *http.Request) {
     fmt.Printf("Go launched at %s\n", t.Local())
     fmt.Fprintf(w, "Date UTC:%s<br>", t.Local())
     fmt.Fprintf(w, "Time Unix%d<br>", t.Unix())
+}
+
+func xss(w http.ResponseWriter, r *http.Request) {
+    t, err := template.New("foo").Parse(`{{define "T"}}Hello, {{.}}!{{end}}`)
+    err = t.ExecuteTemplate(out, "T", "<script>alert('you have been pwned')</script>")
 }
