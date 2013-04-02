@@ -2,15 +2,23 @@ package main
 
 import (
     "fmt"
-    "bytes"
+    "os"
+    "encoding/json"
 )
 
 func main() {
-    a := [][]byte{
-        
+    settings := loadSettings()
+    fmt.Printf("%v\n", settings)
+}
+
+func loadSettings() interface{} {
+    f, _ := os.Open("./settings.json")
+    buf := make([]byte, 1024)
+    n, _ := f.Read(buf)
+    if n == 0 {
+        fmt.Printf("settings file is null")
     }
-    b := []byte{1, 2, 3, 4, 5}
-    c := []byte{1, 2}
-    d := bytes.Join(a, b, c)
-    fmt.Printf("%v\n", d)
+    var j interface{}
+    json.Unmarshal(buf[:n], &j)
+    return j
 }

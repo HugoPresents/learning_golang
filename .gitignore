@@ -25,3 +25,6 @@ _testmain.go
 !*.html
 !*.tmpl
 !templates
+!static
+!*.css
+!*.txt
