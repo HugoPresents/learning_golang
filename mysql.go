@@ -52,7 +52,7 @@ func insert(data map[string]string) {
         fmt.Print("no data!")
         return
     }
-    params := new([]interface{}, len(data))
+    params := make([]interface{}, len(data))
     i := 0
     for column, value := range(data) {
         params[i] = value
