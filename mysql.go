@@ -63,7 +63,7 @@ func insert(data map[string]string) {
     sql = strings.Trim(sql, ", ")
     fmt.Printf("sql: %s\nparams: %v(%T)\n", sql, params, params)
     stmt, err := db.Prepare(sql)
-    res, err := stmt.Exec("cat2", "分类1")
+    res, err := stmt.Exec(params...)
     checkErr(err)
     fmt.Printf("%v\n", res)
 }
