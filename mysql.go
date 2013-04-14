@@ -5,7 +5,6 @@ import (
     _ "github.com/Go-SQL-Driver/MySQL"
     "database/sql"
     "strings"
-    "reflect"
 )
 
 //var db
@@ -16,7 +15,7 @@ func main () {
     //checkErr(err)
     
     data := map[string]string {
-        "name" : "cat1",
+        "name" : "cat2",
         "display_name" : "分类1",
     }
     
@@ -28,6 +27,15 @@ func main () {
     fmt.Printf("%v\n", res)
     */
     insert(data)
+    /*
+    my_s := []int{1, 2, 3}
+    test(1, 2, 3)
+    test(my_s...)
+    */
+}
+
+func test(params ...interface{}) {
+    fmt.Println(params)
 }
 
 func checkErr(err error) {
@@ -44,19 +52,18 @@ func insert(data map[string]string) {
         fmt.Print("no data!")
         return
     }
-    params := make([]string, len(data))
+    params := new([]interface{}, len(data))
     i := 0
     for column, value := range(data) {
         params[i] = value
         sql += column + "=?, "
         i ++
     }
-    sql = strings.Trim(sql, ",")
-    fmt.Printf("sql: %s\nparams: %v\n", sql, params)
+    fmt.Printf("sql: %s\nparams: %v(%T)\n", sql, params, params)
+    sql = strings.Trim(sql, ", ")
+    fmt.Printf("sql: %s\nparams: %v(%T)\n", sql, params, params)
     stmt, err := db.Prepare(sql)
-    checkErr(err)
-    v := reflect.ValueOf(stmt.Exec)
-    res, err := v.Call(params)
+    res, err := stmt.Exec("cat2", "分类1")
     checkErr(err)
     fmt.Printf("%v\n", res)
 }
