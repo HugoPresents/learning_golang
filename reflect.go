@@ -1,18 +1,29 @@
 package main
 
 import (
-    "fmt"
-    "reflect"
+	"fmt"
+	"reflect"
 )
 
-var urls = map[string]*Func {
-    "/" : test,
+type Index struct {
+	Name string
+}
+
+func (index *Index) DisplayName() {
+	fmt.Printf("%s", index.Name)
+}
+
+func DisplayName() {
+	fmt.Printf("%s", "my name")
 }
 
 func main() {
-    fmt.Printf("Im main%s\n", reflect.ValueOf("test"))
-}
-
-func test() {
-    fmt.Printf("Im test func\n")
+	url := "Index.DisplayName"
+	index := Index{Name: "my name"}
+	funcs := map[string]interface{}{
+		"Index": index.DisplayName,
+	}
+	f := reflect.ValueOf(funcs[url])
+	in := make([]reflect.Value, 0)
+	f.Call(in)
 }
